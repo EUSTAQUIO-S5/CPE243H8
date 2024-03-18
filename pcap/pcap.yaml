@@ -1,0 +1,42 @@
+---
+- name: Collect and extract executable from PCAP file
+  hosts: control-node
+  gather_facts: no
+  vars:
+    pcap_file: "~CPE243H8/pcap/file.pcap"
+    executable_name: "MARCO"
+  tasks:
+    - name: Install required packages
+      apt:
+        name: tcpdump
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Install required packages
+      yum:
+        name: tcpdump
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Copy PCAP file to managed node
+      copy:
+        src: "~CPE243H8/pcap/file.pcap"
+        dest: "/tmp/MARCO"
+        mode: 0644
+
+    - name: Extract executable from PCAP file
+      command: tshark -r "/tmp/MARCO" -Y "http.file_data" -T fields -e http.file_data > "/tmp/MARCO.bin"
+      args:
+        creates: "/tmp/MARCO.bin"
+
+    - name: Change file permissions
+      file:
+        path: "/tmp/MARCO.bin"
+        mode: 0755
+        state: file
+
+    - name: Transfer executable to managed node
+      copy:
+        src: "/tmP/MARCO.bin"
+        dest: "~CPE243H8/pcap/file.pcap"
+        mode: 0755
