@@ -43,6 +43,7 @@
 
 
 
-        fatal: [192.168.56.107]: FAILED! => {"changed": true, "cmd": ["tcpflow", "-r", "/home/marco/CPE243H8/pcaps.pcap", "-o", "/home/marco/CPE243H8/"], "delta": "0:00:00.042225", "end": "2024-03-19 03:23:38.009672", "msg": "non-zero return code", "rc": 1, "start": "2024-03-19 03:23:37.967447", "stderr": "reportfilename: /home/marco/CPE243H8//report.xml\n/home/marco/CPE243H8//report.xml: Is a directory", "stderr_lines": ["reportfilename: /home/marco/CPE243H8//report.xml", "/home/marco/CPE243H8//report.xml: Is a directory"], "stdout": "", "stdout_lines": []}
+TASK [Extract executable file] ******************************************************************
+fatal: [192.168.56.107]: FAILED! => {"changed": true, "cmd": ["tcpflow", "-r", "/home/marco/CPE243H8/pcaps.pcap", "-o", "/home/marco/CPE243H8/report.xml"], "delta": "0:00:00.030932", "end": "2024-03-19 03:47:45.536496", "msg": "non-zero return code", "rc": 1, "start": "2024-03-19 03:47:45.505564", "stderr": "reportfilename: /home/marco/CPE243H8/report.xml/report.xml\ntcpflow: /home/marco/CPE243H8/pcaps.pcap: No such file or directory", "stderr_lines": ["reportfilename: /home/marco/CPE243H8/report.xml/report.xml", "tcpflow: /home/marco/CPE243H8/pcaps.pcap: No such file or directory"], "stdout": "", "stdout_lines": []}
 
 
